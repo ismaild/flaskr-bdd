@@ -1,15 +1,14 @@
+from os.path import abspath, dirname, join
 import os
 import sys
 import tempfile
 
 # Set Path
-pwd = os.path.abspath(os.path.dirname(__file__))
-project = os.path.basename(pwd)
-new_path = pwd.strip(project)
-activate_this = os.path.join(new_path,'flaskr')
-sys.path.append(activate_this)
+app_path = join(dirname(dirname(abspath(__file__))), 'flaskr')
+sys.path.append(app_path)
 
 from flaskr import app, init_db
+
 
 def before_feature(context, feature):
     app.config['TESTING'] = True
@@ -21,4 +20,3 @@ def before_feature(context, feature):
 def after_feature(context, feature):
     os.close(context.db)
     os.unlink(app.config['DATABASE'])
-

@@ -3,8 +3,8 @@ import flaskr
 import unittest
 import tempfile
 
-class FlaskrTestCase(unittest.TestCase):
 
+class FlaskrTestCase(unittest.TestCase):
     def setUp(self):
         self.db_fd, flaskr.app.config['DATABASE'] = tempfile.mkstemp()
         flaskr.app.config['TESTING'] = True
@@ -21,8 +21,8 @@ class FlaskrTestCase(unittest.TestCase):
 
     def login(self, username, password):
         return self.app.post('/login', data=dict(
-        username=username,
-        password=password
+            username=username,
+            password=password
         ), follow_redirects=True)
 
     def logout(self):
@@ -37,6 +37,7 @@ class FlaskrTestCase(unittest.TestCase):
         assert 'Invalid username' in rv.data
         rv = self.login('admin', 'defaultx')
         assert 'Invalid password' in rv.data
+
 
 if __name__ == '__main__':
     unittest.main()
