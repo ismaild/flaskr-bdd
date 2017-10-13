@@ -1,12 +1,5 @@
-from os.path import abspath, dirname, join
 import os
-import sys
 import tempfile
-
-# Set Path
-app_path = join(dirname(dirname(abspath(__file__))), 'flaskr')
-sys.path.append(app_path)
-
 from flaskr import app, init_db
 
 

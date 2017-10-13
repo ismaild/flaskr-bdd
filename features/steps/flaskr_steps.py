@@ -1,5 +1,3 @@
-# Add flaskr to syspath
-
 from behave import given, when, then
 
 
