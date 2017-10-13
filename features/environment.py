@@ -4,10 +4,11 @@ from flaskr import app, init_db
 
 
 def before_feature(context, feature):
-    app.config['TESTING'] = True
     context.db, app.config['DATABASE'] = tempfile.mkstemp()
+    app.testing = True
     context.client = app.test_client()
-    init_db()
+    with app.app_context():
+        init_db()
 
 
 def after_feature(context, feature):
